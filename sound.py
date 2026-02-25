@@ -45,13 +45,14 @@ class Sound:
 
         time_points = np.linspace(0,self.duration, n_samples,False)
 
-        if np.any(time_points)%2 == 1:
-            square = time_points*frequency
-        else:
-            square = time_points*-frequency
+        normalised = time_points%frequency
         
-        square *= self.amplitude
-        return square
+        
+        if normalised > frequency/(4*np.pi):
+            return -self.amplitude
+        else:
+            return self.amplitude
+        
 
         
 
@@ -61,3 +62,4 @@ class Sound:
 
 s1 = Sound(5.0,0.5,44100)
 s1.play(s1.square_wave(notes.notes["A#3"]))
+
