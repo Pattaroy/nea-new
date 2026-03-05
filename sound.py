@@ -45,13 +45,11 @@ class Sound:
 
         time_points = np.linspace(0,self.duration, n_samples,False)
 
-        normalised = time_points%frequency
+        #using the sine function previously used, i can use it as a condition for the square wave function to amplify to 1 or -1
+        square = np.where(np.sin(2*np.pi*frequency*time_points)>=0,1,-1)
         
-        
-        if normalised > frequency/(4*np.pi):
-            return -self.amplitude
-        else:
-            return self.amplitude
+        square = (square*self.amplitude)
+        return square
         
 
         
