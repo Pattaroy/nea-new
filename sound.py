@@ -61,3 +61,4 @@ class Sound:
 s1 = Sound(5.0,0.5,44100)
 s1.play(s1.square_wave(notes.notes["A#3"]))
 
+
