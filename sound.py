@@ -2,11 +2,11 @@
 
 import numpy as np
 import sounddevice as sd
-
+from scipy import signal
 import notes
 
 class Sound:
-    def __init__(self, duration, amplitude, sample_rate):
+    def __init__(self, duration, amplitude, sample_rate = 44100):
         self.duration:float= duration
         self.amplitude:float= amplitude
         self.sample_rate:int= sample_rate 
@@ -45,20 +45,25 @@ class Sound:
 
         time_points = np.linspace(0,self.duration, n_samples,False)
 
-        #using the sine function previously used, i can use it as a condition for the square wave function to amplify to 1 or -1
-        square = np.where(np.sin(2*np.pi*frequency*time_points)>=0,1,-1)
-        
-        square = (square*self.amplitude)
+        #using the sine wave function as a condition to create the square wave
+        #return either 1 or -1 based on if the wave is positive or negative
+        square = np.where(np.sin(2*np.pi*frequency*time_points)>=0, 1,-1)
+
+        #the code doesn't like me shortening this for some reason
+        square = (square * self.amplitude)
         return square
+
+    def sawtooth_wave(self, frequency:float, width:float = 1)->np.ndarray:
+        #cutoff changes where the angle of the sawtooth changes.
+        #this allows for a different timbre of sawtooth and also allows for a triangle wave.
         
+        n_samples = int(self.duration*self.sample_rate)
 
-        
+        time_points = np.linspace(0,self.duration, n_samples,False)
 
+        #scipy's sawtooth function 
+        sawtooth = signal.sawtooth(2*np.pi*frequency*time_points, width)
 
-
-
-
-s1 = Sound(5.0,0.5,44100)
-s1.play(s1.square_wave(notes.notes["A#3"]))
-
+        sawtooth *= sawtooth
+        return sawtooth
 
