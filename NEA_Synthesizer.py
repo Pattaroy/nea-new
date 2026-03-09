@@ -5,7 +5,7 @@ from sound import Sound
 from ADSR import ADSR
 from notes import notes
 
-piano{}
+piano = {}
 
 app = App(title="Synthesizer")
 
