@@ -7,22 +7,25 @@ from notes import notes
 
 piano = {}
 
-app = App(title="Synthesizer")
+app = App(title="Synthesizer", layout="grid")
+
 
 def current_note(note):
   current_note = note
 
 
-for note in range 1, notes:
+for note in range (len(notes)):
+  
   if "#" in notes[note]:
-    piano[f"key{note}"] = PushButton(app, 
-    
+    piano[f"key{note}"] = PushButton(app, current_note(), note,f"{notes[note]}",grid=[1,1])
 
-amplitude1 = slider(app, end = 1, horizontal = false)
-amplitude2 = slider(app, end = 1, horizontal = false)
+app.display
 
-duration1
-duration2
+amplitude1 = Slider(app, end = 1, horizontal = False)
+amplitude2 = Slider(app, end = 1, horizontal = False)
 
-wave1 = Sound
-wave2
+#duration1
+#duration2
+
+#wave1 = Sound
+#wave2
