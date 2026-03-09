@@ -1,12 +1,6 @@
-import tkinter as tk
-import pygame
+#NEA_Synthesizer
 
-app = tk.Tk()
-app.title("Synthesizer")
-
-app.geometry('1920x1080')
-app.resizable(False, False)
-
-
-app.mainloop()
-
+from guizero import app, Text, PushButton
+from sound import sound
+from ADSR import ADSR
+from notes import notes
