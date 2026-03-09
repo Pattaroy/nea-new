@@ -17,9 +17,6 @@ class ADSR():
             sound: np.array,
             sample_rate: int=44100
             ):
-        
-        #copy the waveform array to prevent modifying the amplitudes of the original
-        
 
         #calculate number of samples for each of the adsr stages
         attack_samples = int(self.adsr[0]*sample_rate)
